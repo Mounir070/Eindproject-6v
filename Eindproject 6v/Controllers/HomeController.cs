@@ -30,7 +30,7 @@ namespace Eindproject_6v.Controllers
         }
 
         [Route("contact")]
-        public IActionResult Contact()
+        public IActionResult Contact(string voornaam, string achternaam)
         {
             return View();
         }
