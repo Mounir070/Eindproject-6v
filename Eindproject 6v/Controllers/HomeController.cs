@@ -23,7 +23,32 @@ namespace Eindproject_6v.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        [Route("myportfolio")]
+        public IActionResult MyPortfolio()
+        {
+            return View();
+        }
+
+        [Route("contact")]
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
+        [Route("aboutus")]
+        public IActionResult Aboutus()
+        {
+            return View();
+        }
+
+        [Route("login")]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [Route("themes")]
+        public IActionResult Themes()
         {
             return View();
         }
