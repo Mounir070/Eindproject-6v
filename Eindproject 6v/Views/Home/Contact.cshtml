@@ -3,9 +3,10 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<form>
+<form method="post">
     Voornaam: <input type="text" name="firstname" />
     Achternaam: <input type="text" name="lastname" />
     <input type="submit" value="save" />
-</form>
+</form> 
 
+<p>Hallo @ViewData["firstname"]</p>

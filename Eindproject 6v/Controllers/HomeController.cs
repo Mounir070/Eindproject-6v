@@ -30,8 +30,17 @@ namespace Eindproject_6v.Controllers
         }
 
         [Route("contact")]
-        public IActionResult Contact(string voornaam, string achternaam)
+        public IActionResult Contact()
+        {           
+            return View();
+        }
+
+        [HttpPost]
+        [Route("contact")]
+        public IActionResult Contact(string firstname, string lastname)
         {
+            ViewData["firstname"] = firstname;
+            ViewData["lastname"] = lastname;
             return View();
         }
 
