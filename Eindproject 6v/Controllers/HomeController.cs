@@ -37,11 +37,12 @@ namespace Eindproject_6v.Controllers
 
         [HttpPost]
         [Route("contact")]
-        public IActionResult Contact(string firstname, string lastname)
+        public IActionResult Contact(Customer customer)
         {
-            ViewData["firstname"] = firstname;
-            ViewData["lastname"] = lastname;
-            return View();
+            if (ModelState.IsValid)
+                return Redirect("/succes");
+
+            return View(customer);
         }
 
         [Route("aboutus")]

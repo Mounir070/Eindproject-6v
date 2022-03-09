@@ -1,12 +1,53 @@
-﻿@{
+﻿@model Customer
+@{
+
     ViewData["Title"] = "Contact";
 }
 <h1>@ViewData["Title"]</h1>
 
 <form method="post">
-    Voornaam: <input type="text" name="firstname" />
-    Achternaam: <input type="text" name="lastname" />
-    <input type="submit" value="save" />
-</form> 
+    <div>
+        @Html.LabelFor(m => m.Firstname)
+        @Html.TextBoxFor(m => m.Firstname)
+        @Html.ValidationMessageFor(m => m.Firstname)
+    </div>
 
-<p>Hallo @ViewData["firstname"]</p>
+    <div>
+        @Html.LabelFor(m => m.Lastname)
+        @Html.TextBoxFor(m => m.Lastname)
+        @Html.ValidationMessageFor(m => m.Lastname)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.email)
+        @Html.TextBoxFor(m => m.email)
+        @Html.ValidationMessageFor(m => m.email)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.phonenumber)
+        @Html.TextBoxFor(m => m.phonenumber)
+        @Html.ValidationMessageFor(m => m.phonenumber)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.address)
+        @Html.TextBoxFor(m => m.address)
+        @Html.ValidationMessageFor(m => m.address)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.description)
+        @Html.TextBoxFor(m => m.description)
+        @Html.ValidationMessageFor(m => m.description)
+    </div>
+   
+    <div>
+        <input type="submit" value="save" />
+    </div>
+   
+</form>
+
+@if (Model != null){
+    <p>Hallo @ViewData["firstname"]</p>
+}
