@@ -1,0 +1,44 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    text-align: center;
+    font: 1.2em sans-serif;
+    --border-length: 2px;
+
+    height: 100%;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    flex-direction: row;
+    border-bottom: var(--border-length) solid black;
+}
+
+header > * {
+    flex-grow: 0.1;
+}
+
+header > :first-child {
+    border-right: var(--border-length) solid black;
+}
+
+header > :last-child {
+    border-left: var(--border-length) solid black;
+}
+
+#titlebar {
+    flex-grow: 2;
+    border: 0;
+    margin: 0 0.5em;
+}
+
+main {
+    margin: 0 20px;
+    height: 100%;
+}
