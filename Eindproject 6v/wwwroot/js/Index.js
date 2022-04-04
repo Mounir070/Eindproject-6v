@@ -35,6 +35,9 @@ for (const child of toolbar.querySelectorAll(".button.color")) {
 
 const clearButton = document.getElementById("clear");
 clearButton.onclick = () => {
-    const ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const proceed = confirm("Are you sure you want to clean the canvas?");
+    if (proceed) {
+        const ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
 }
