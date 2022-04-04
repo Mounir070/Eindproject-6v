@@ -8,22 +8,24 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
 </head>
 <body>
-<header>
-    <nav>
-        <ul>
-            <li><a asp-page="/Index">Home</a></li>
-            <li><a asp-page="/Login">Login</a></li>
-            <li><a asp-page="/Explore">Explore</a></li>
-        </ul>
-    </nav>
-</header>
-<main>
-    @RenderBody()
-</main>
-<footer>
-    <p>
-        Made by 
-    </p>
-</footer>
+<div id="container">
+    <header>
+        <nav>
+            <ul>
+                <li><a asp-page="/Index">Home</a></li>
+                <li><a asp-page="/Explore">Explore</a></li>
+                <li><a asp-page="/Login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        @RenderBody()
+    </main>
+    <footer>
+        <p>
+            Made by
+        </p>
+    </footer>
+</div>
 </body>
 </html>
