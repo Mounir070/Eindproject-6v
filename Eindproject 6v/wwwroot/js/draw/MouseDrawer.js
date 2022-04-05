@@ -36,6 +36,7 @@ export class MouseDrawer {
         this.#ctx.moveTo(this.#pencil.prevX, this.#pencil.prevY);
         this.#ctx.lineTo(this.#pencil.currX, this.#pencil.currY);
         this.#ctx.strokeStyle = this.#pencil.getPencilColor();
+        this.#ctx.lineCap = "round";
         this.#ctx.lineWidth = this.#pencil.isEraser() ? Pencil.ERASER_RADIUS : Pencil.PENCIL_RADIUS;
         this.#ctx.stroke();
         this.#ctx.closePath();
@@ -50,7 +51,9 @@ export class MouseDrawer {
         this.#isDrawing = true;
         this.#ctx.beginPath();
         this.#ctx.fillStyle = this.#pencil.getPencilColor();
-        this.#ctx.fillRect(this.#pencil.currX, this.#pencil.currY, Pencil.PENCIL_RADIUS, Pencil.PENCIL_RADIUS);
+        const radius = this.#pencil.isEraser() ? Pencil.ERASER_RADIUS : Pencil.PENCIL_RADIUS;
+        this.#ctx.arc(this.#pencil.currX, this.#pencil.currY, radius / 2, 0, 2 * Math.PI);
+        this.#ctx.fill();
         this.#ctx.closePath();
     }
 
