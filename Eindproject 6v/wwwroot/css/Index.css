@@ -76,4 +76,5 @@ button::-moz-focus-inner {
 
 #canvas-container {
     overflow: hidden;
+    cursor: crosshair;
 }
