@@ -12,27 +12,25 @@
     <script src="@Url.Content("~/js/Index.js")" type="module" async></script>
 }
 
-<div id="drawing-container">
-    <div id="toolbar">
-        <button type="button" id="eraser" class="button">Eraser</button>
-        <button type="button" class="button color" style="background-color: white;"></button>
-        <button type="button" class="button color" style="background-color: black;"></button>
-        <button type="button" class="button color" style="background-color: red;"></button>
-        <button type="button" class="button color" style="background-color: orange;"></button>
-        <button type="button" class="button color" style="background-color: yellow;"></button>
-        <button type="button" class="button color" style="background-color: green;"></button>
-        <button type="button" class="button color" style="background-color: deepskyblue;"></button>
-        <button type="button" class="button color" style="background-color: blue;"></button>
-        <button type="button" class="button color" style="background-color: purple;"></button>
-        <button type="button" class="button color" style="background-color: violet;"></button>
-        <button type="button" class="button color" style="background-color: pink;"></button>
-        <button type="button" class="button color" style="background-color: lightgreen;"></button>
-        <button type="button" class="button color" style="background-color: cyan;"></button>
-        <button type="button" class="button color" style="background-color: lightblue;"></button>
-        <button type="button" class="button" id="clear">Clear</button>
-        <button type="button" class="button" id="share">Share</button>
+<div id="index-container">
+    <div id="picture-container">
+        <figure>
+            <picture>
+                <img src="https://picsum.photos/1200/400" alt="">
+            </picture>
+            <figcaption></figcaption>
+        </figure>
     </div>
-    <div id="canvas-container">
-        <canvas id="canvas" width="auto" height="auto"></canvas>
-    </div>
+    <aside id="picture-description">
+        <form>
+            <fieldset>
+                <legend>Filters</legend>
+                <label for="img-title">Image Title</label>
+                <input id="img-title" name="img-title" type="text">
+                <label for="img-description">Description</label>
+                <textarea id="img-description" name="img-description" rows="5"></textarea>
+                <input value="Submit" type="submit">
+            </fieldset>
+        </form>
+    </aside>
 </div>

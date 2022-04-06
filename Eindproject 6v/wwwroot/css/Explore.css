@@ -1,6 +1,6 @@
-﻿#index-container {
+﻿#explore-container {
     background-color: white;
-
+    
     display: flex;
     flex-direction: row;
 }
@@ -9,6 +9,6 @@
     overflow: inherit;
 }
 
-#picture-description {
+#search-bar {
     flex: 1;
 }
