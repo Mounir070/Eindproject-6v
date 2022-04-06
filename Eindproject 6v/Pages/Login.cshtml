@@ -1,0 +1,37 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+@section Styles {
+    <link href="@Url.Content("~/css/Login.css")" rel="stylesheet">
+}
+
+<div id="login-container">
+    <div id="login">
+        <fieldset>
+            <legend>Login</legend>
+            <label for="login-username">Username</label>
+            <input id="login-username" name="username" type="text">
+            <label for="login-password">Password</label>
+            <input id="login-password" name="password" type="password">
+            <input value="Login" type="submit">
+        </fieldset>
+    </div>
+    <p>
+        Or if you don't have an account yet...
+    </p>
+    <div id="signup">
+        <fieldset>
+            <legend>Signup</legend>
+            <label for="signup-username">Username</label>
+            <input id="signup-username" name="username" type="text">
+            <label for="signup-password">Password</label>
+            <input id="signup-password" name="password" type="password">
+            <label for="signup-confirm-password">Confirm Password</label>
+            <input id="signup-confirm-password" name="confirm-password" type="password">
+            <input value="Signup" type="submit">
+        </fieldset>
+    </div>
+</div>
