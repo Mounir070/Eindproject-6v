@@ -56,12 +56,23 @@ nav > ul > :last-child {
   flex: 1;
 
   /* try to avoid flex here? */
-  display: flex;
+  height: 100%;
 }
 
 #container main > div {
   height: inherit;
   overflow: auto;
+  
+  display: flex;
+}
+
+#container main > div > div {
+  flex: 3;
+  overflow: inherit;
+}
+
+#container main > div > aside {
+  flex: 1;
 }
 
 #container footer {

@@ -1,4 +1,6 @@
-﻿namespace Eindproject_6v.Models;
+﻿using System.Net.Mime;
+
+namespace Eindproject_6v.Models;
 
 public class ImageModel
 {
@@ -7,6 +9,7 @@ public class ImageModel
     public string author;
     public string? description;
     public byte[] bytes;
+
     public ImageModel(int id, string? title, string author, string? description, byte[] bytes)
     {
         this.id = id;
@@ -15,7 +18,7 @@ public class ImageModel
         this.description = description;
         this.bytes = bytes;
     }
-    
+
     public bool HasTitle()
     {
         return this.title is not null;
