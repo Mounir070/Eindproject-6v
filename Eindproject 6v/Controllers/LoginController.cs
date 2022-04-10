@@ -23,33 +23,33 @@ public class LoginController : Controller
 
     private static int RegisterAccount(string user, string password)
     {
-        const string query = "insert into user_info (user_name, hashed_pw) values (?user, ?password)";
+        const string query = "insert into user_info (USER_NAME, HASHED_PW) values (@USER, @PASSWORD)";
         
         using (MySqlConnection conn = new MySqlConnection(HomeController.ConnectionString))
         {
             conn.Open();
-            MySqlCommand cmd = new MySqlCommand(query);
-            cmd.Parameters.Add("?user", MySqlDbType.VarChar).Value = user;
-            cmd.Parameters.Add("?password", MySqlDbType.VarChar).Value = HashPassword(password);
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            cmd.Parameters.Add("?USER", MySqlDbType.VarChar).Value = user;
+            cmd.Parameters.Add("?PASSWORD", MySqlDbType.VarChar).Value = HashPassword(password);
             return cmd.ExecuteNonQuery();
         }
     }
     
     private static bool Login(string user, string password)
     {
-        const string query = "select hashed_pw from user_info where user_name = ?user";
+        const string query = "select HASHED_PW from user_info where USER_NAME = @USER";
         
         using (MySqlConnection conn = new MySqlConnection(HomeController.ConnectionString))
         {
             conn.Open();
-            MySqlCommand cmd = new MySqlCommand(query);
-            cmd.Parameters.Add("?user", MySqlDbType.VarChar).Value = user;
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            cmd.Parameters.Add("?USER", MySqlDbType.VarChar).Value = user;
 
             using (var reader = cmd.ExecuteReader())
             {
                 while (reader.Read())
                 {
-                    return reader["hashed_pw"].ToString() == HashPassword(password);
+                    return reader.GetString("HASHED_PW") == HashPassword(password);
                 }
             }
         }
