@@ -11,16 +11,18 @@
         <p>
             Login here.
         </p>
-        <fieldset>
-            <legend>Login</legend>
-            <label for="login-username">Username</label>
-            <input id="login-username" name="username" type="text">
-            <br>
-            <label for="login-password">Password</label>
-            <input id="login-password" name="password" type="password">
-            <br>
-            <input value="Login" type="submit">
-        </fieldset>
+        <form action="Login/Login" method="post">
+            <fieldset>
+                <legend>Login</legend>
+                <label for="login-username">Username</label>
+                <input id="login-username" name="username" type="text">
+                <br>
+                <label for="login-password">Password</label>
+                <input id="login-password" name="password" type="password">
+                <br>
+                <input value="Login" type="submit">
+            </fieldset>
+        </form>
     </div>
     <div id="signup">
         <p>
