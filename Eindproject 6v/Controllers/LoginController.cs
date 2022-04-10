@@ -29,7 +29,7 @@ public class LoginController : Controller
         StringBuilder result = new StringBuilder(bytes.Length * 2);
         for (int i = 0; i < bytes.Length; i++)
         {
-            result.Append(bytes[i].ToString());
+            result.Append(bytes[i].ToString("X2"));
         }
         return result.ToString();
     }
