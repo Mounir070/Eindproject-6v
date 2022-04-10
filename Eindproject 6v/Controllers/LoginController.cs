@@ -20,7 +20,18 @@ public class LoginController : Controller
     private static string HashPassword(string password)
     {
         byte[] hash = SHA256.HashData(Encoding.UTF8.GetBytes(password));
-        return Convert.ToBase64String(hash);
+        return BytesToHex(hash);
+    }
+
+    // Converteer de hash naar hexadecimaal getal
+    private static string BytesToHex(byte[] bytes)
+    {
+        StringBuilder result = new StringBuilder(bytes.Length * 2);
+        for (int i = 0; i < bytes.Length; i++)
+        {
+            result.Append(bytes[i].ToString());
+        }
+        return result.ToString();
     }
 
     private static int RegisterAccount(string user, string password)
