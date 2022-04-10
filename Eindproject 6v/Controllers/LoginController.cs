@@ -29,13 +29,13 @@ public class LoginController : Controller
         {
             conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, conn);
-            cmd.Parameters.Add("?USER", MySqlDbType.VarChar).Value = user;
-            cmd.Parameters.Add("?PASSWORD", MySqlDbType.VarChar).Value = HashPassword(password);
+            cmd.Parameters.Add("@USER", MySqlDbType.VarChar).Value = user;
+            cmd.Parameters.Add("@zPASSWORD", MySqlDbType.VarChar).Value = HashPassword(password);
             return cmd.ExecuteNonQuery();
         }
     }
     
-    private static bool Login(string user, string password)
+    private static bool LoginAccount(string user, string password)
     {
         const string query = "select HASHED_PW from user_info where USER_NAME = @USER";
         
@@ -43,7 +43,7 @@ public class LoginController : Controller
         {
             conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, conn);
-            cmd.Parameters.Add("?USER", MySqlDbType.VarChar).Value = user;
+            cmd.Parameters.Add("@USER", MySqlDbType.VarChar).Value = user;
 
             using (var reader = cmd.ExecuteReader())
             {
@@ -55,6 +55,21 @@ public class LoginController : Controller
         }
 
         return false;
+    }
+
+    [HttpPost]
+    public IActionResult Login(string username, string password)
+    {
+        bool logged = LoginAccount(username, password);
+        if (logged)
+        {
+            return RedirectToAction("Index", "Home");
+        }
+        else
+        {
+            return View("Index");
+        }
+
     }
     
     // GET
