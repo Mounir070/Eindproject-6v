@@ -9,7 +9,7 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
 
-    private const string ConnectionString = "Server=informatica.st-maartenscollege.nl;Database=110272;Uid=110272;Pwd=inf2021sql;";
+    public const string ConnectionString = "Server=informatica.st-maartenscollege.nl;Database=110272;Uid=110272;Pwd=inf2021sql;";
 
     private static List<ImageModel> GetRecentImages()
     {
