@@ -12,6 +12,5 @@
 
 #search-bar > form > fieldset {
     height: 100%;
-    border-style: none;
     box-sizing: border-box;
 }
