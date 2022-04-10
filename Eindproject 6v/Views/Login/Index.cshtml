@@ -28,18 +28,20 @@
         <p>
             Or register here.
         </p>
-        <fieldset>
-            <legend>Signup</legend>
-            <label for="signup-username">Username</label>
-            <input id="signup-username" name="username" type="text">
-            <br>
-            <label for="signup-password">Password</label>
-            <input id="signup-password" name="password" type="password">
-            <br>
-            <label for="signup-confirm-password">Confirm Password</label>
-            <input id="signup-confirm-password" name="confirm-password" type="password">
-            <br>
-            <input value="Signup" type="submit">
-        </fieldset>
+        <form action="/Login/Register" method="post">
+            <fieldset>
+                <legend>Signup</legend>
+                <label for="signup-username">Username</label>
+                <input id="signup-username" name="username" type="text">
+                <br>
+                <label for="signup-password">Password</label>
+                <input id="signup-password" name="password" type="password">
+                <br>
+                <label for="signup-confirm-password">Confirm Password</label>
+                <input id="signup-confirm-password" name="confirm_password" type="password">
+                <br>
+                <input value="Signup" type="submit">
+            </fieldset>
+        </form>
     </div>
 </div>

@@ -8,6 +8,7 @@ namespace Eindproject_6v.Controllers;
 
 public class LoginController : Controller
 {
+    public const string SessionKeyName = "_Name";
     private readonly ILogger<LoginController> _logger;
 
     public LoginController(ILogger<LoginController> logger)
@@ -64,6 +65,26 @@ public class LoginController : Controller
         bool logged = LoginAccount(username, password);
         if (logged)
         {
+            HttpContext.Session.SetString(SessionKeyName, username);
+            return RedirectToAction("Index", "Home");
+        }
+        else
+        {
+            return RedirectToAction("Index", "Login");
+        }
+    }
+    
+    [HttpPost]
+    public IActionResult Register(string username, string password, string confirm_password)
+    {
+        if (confirm_password != password)
+        {
+            return RedirectToAction("Index", "Login");
+        }
+        int signup = RegisterAccount(username, password);
+        if (signup > 0)
+        {
+            HttpContext.Session.SetString(SessionKeyName, username);
             return RedirectToAction("Index", "Home");
         }
         else
