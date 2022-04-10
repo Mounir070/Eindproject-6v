@@ -1,14 +1,17 @@
 ﻿#explore-container {
     background-color: white;
-    
-    display: flex;
-    flex-direction: row;
 }
 
 #picture-container {
     overflow: inherit;
 }
 
-#search-bar {
-    flex: 1;
+#search-bar > form {
+    height: 100%;
+}
+
+#search-bar > form > fieldset {
+    height: 100%;
+    border-style: none;
+    box-sizing: border-box;
 }

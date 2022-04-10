@@ -17,10 +17,22 @@
         @foreach (var img in Model)
         {
             <figure>
-                <picture>
-                    <img src="data:image/png;base64, @img.GetBase64()" alt="@img.title">
-                </picture>
-                <figcaption>@img.title</figcaption>
+                @{
+                    if (img.HasTitle())
+                    {
+                        <picture>
+                            <img src="data:image/png;base64, @img.GetBase64()" alt="@img.title">
+                        </picture>
+                        <figcaption>@img.title</figcaption>
+                    }
+                    else
+                    {
+                        <picture>
+                            <img src="data:image/png;base64, @img.GetBase64()" alt="No title">
+                        </picture>
+                        <figcaption>No title</figcaption>
+                    }
+                }
             </figure>
         }
     </div>
@@ -30,8 +42,10 @@
                 <legend>Filters</legend>
                 <label for="img-title">Image Title</label>
                 <input id="img-title" name="img-title" type="text">
+                <br>
                 <label for="auth-name">Author Name</label>
                 <input id="auth-name" name="auth-name" type="text">
+                <br>
                 <input value="Search" type="submit">
             </fieldset>
         </form>
