@@ -1,14 +1,16 @@
 ﻿#index-container {
     background-color: white;
-
-    display: flex;
-    flex-direction: row;
 }
 
 #picture-container {
     overflow: inherit;
 }
 
-#picture-description {
-    flex: 1;
+#picture-description > form {
+    height: 100%;
+}
+
+#picture-description > form > fieldset {
+    height: 100%;
+    box-sizing: border-box;
 }

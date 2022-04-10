@@ -17,24 +17,24 @@
         @foreach (var img in Model)
         {
             <figure>
-                @{
-                    if (img.HasTitle())
-                    {
-                        <picture>
-                            <img src="data:image/png;base64, @img.GetBase64()" alt="@img.title">
-                        </picture>
-                        <figcaption>@img.title</figcaption>
-                    }
-                    else
-                    {
-                        <picture>
-                            <img src="data:image/png;base64, @img.GetBase64()" alt="No title">
-                        </picture>
-                        <figcaption>No title</figcaption>
-                    }
-                }
+                <picture>
+                    <img src="data:image/png;base64, @img.GetBase64()" alt="@img.title">
+                </picture>
+                <figcaption>@img.title</figcaption>
             </figure>
         }
+        <figure>
+            <picture>
+                <img src="https://picsum.photos/1200/400" alt="">
+            </picture>
+            <figcaption></figcaption>
+        </figure>
+        <figure>
+            <picture>
+                <img src="https://picsum.photos/800/600" alt="">
+            </picture>
+            <figcaption></figcaption>
+        </figure>
     </div>
     <aside id="search-bar">
         <form>

@@ -1,6 +1,13 @@
 ﻿#login-container {
     background-color: white;
     width: 100%;
-    display: flex;
-    flex-direction: column;
+}
+
+/* De `!important` override de CSS van de _Layout CSS, anders werkt dit niet */
+#login-container > div {
+    flex: 1 !important;
+}
+
+#login, #signup {
+    overflow: inherit;
 }

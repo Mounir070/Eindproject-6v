@@ -15,6 +15,7 @@ public class LoginController : Controller
         _logger = logger;
     }
 
+    // Maak een gehashte versie van het wachtwoord
     private static string HashPassword(string password)
     {
         byte[] hash = SHA256.HashData(Encoding.UTF8.GetBytes(password));
