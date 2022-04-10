@@ -13,6 +13,7 @@ public class HomeController : Controller
 
     private static List<ImageModel> GetRecentImages()
     {
+        // Vervang de IMG_AUTHOR_ID met USER_NAME met een "join" en sorteer van nieuw naar oud
         const string query = "select IMG_ID, IMG_TITLE, USER_NAME, IMG_DESCRIPTION, IMG_BLOB from img_info join user_info on img_info.IMG_AUTHOR_ID = user_info.USER_ID order by img_info.IMG_ID desc";
         var images = new List<ImageModel>();
         using var connection = new MySqlConnection(ConnectionString);
