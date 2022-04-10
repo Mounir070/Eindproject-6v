@@ -9,6 +9,7 @@ namespace Eindproject_6v.Controllers;
 public class LoginController : Controller
 {
     public const string SessionKeyName = "_Name";
+    public const string SessionKeyId = "_Id";
     private readonly ILogger<LoginController> _logger;
 
     public LoginController(ILogger<LoginController> logger)
@@ -70,13 +71,37 @@ public class LoginController : Controller
         return false;
     }
 
+    private static int? GetUserId(string user)
+    {
+        const string query = "select USER_ID from user_info where USER_NAME = @USER";
+        
+        using (MySqlConnection conn = new MySqlConnection(HomeController.ConnectionString))
+        {
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            cmd.Parameters.Add("@USER", MySqlDbType.VarChar).Value = user;
+
+            using (var reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    return reader.GetInt32("USER_ID");
+                }
+            }
+        }
+
+        return null;
+    }
+
     [HttpPost]
     public IActionResult Login(string username, string password)
     {
         bool logged = LoginAccount(username, password);
-        if (logged)
+        int? id = GetUserId(username);
+        if (logged && id.HasValue)
         {
             HttpContext.Session.SetString(SessionKeyName, username);
+            HttpContext.Session.SetInt32(SessionKeyId, id.Value);
             return RedirectToAction("Index", "Home");
         }
         else
@@ -92,10 +117,13 @@ public class LoginController : Controller
         {
             return RedirectToAction("Index", "Login");
         }
+
         int signup = RegisterAccount(username, password);
-        if (signup > 0)
+        int? id = GetUserId(username);
+        if (id.HasValue)
         {
             HttpContext.Session.SetString(SessionKeyName, username);
+            HttpContext.Session.SetInt32(SessionKeyId, id.Value);
             return RedirectToAction("Index", "Home");
         }
         else
