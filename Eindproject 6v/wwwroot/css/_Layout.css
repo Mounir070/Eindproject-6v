@@ -55,24 +55,39 @@ nav > ul > :last-child {
   overflow: hidden;
   flex: 1;
 
-  /* try to avoid flex here? */
   height: 100%;
 }
 
 #container main > div {
   height: inherit;
   overflow: auto;
-  
+
   display: flex;
 }
 
-#container main > div > div {
-  flex: 3;
-  overflow: inherit;
+@media only screen and (min-width: 800px) {
+  #container main > div > div {
+    flex: 3;
+    overflow: inherit;
+  }
+
+  #container main > div > aside {
+    flex: 1;
+  }
 }
 
-#container main > div > aside {
-  flex: 1;
+@media only screen and (max-width: 800px) {
+  #container main > div {
+    flex-direction: column;
+  }
+
+  #container main > div > div {
+    order: 1;
+  }
+
+  #container main > div > aside {
+    order: 0;
+  }
 }
 
 #container footer {
