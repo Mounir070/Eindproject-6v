@@ -31,7 +31,7 @@ public class LoginController : Controller
             conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, conn);
             cmd.Parameters.Add("@USER", MySqlDbType.VarChar).Value = user;
-            cmd.Parameters.Add("@zPASSWORD", MySqlDbType.VarChar).Value = HashPassword(password);
+            cmd.Parameters.Add("@PASSWORD", MySqlDbType.VarChar).Value = HashPassword(password);
             return cmd.ExecuteNonQuery();
         }
     }
@@ -68,9 +68,8 @@ public class LoginController : Controller
         }
         else
         {
-            return View("Index");
+            return RedirectToAction("Index", "Login");
         }
-
     }
     
     // GET
