@@ -5,23 +5,25 @@ namespace Eindproject_6v.Models;
 // struct omdat de waardes niet null kunnen zijn
 public struct ImageModel
 {
-    public int id;
-    public string title;
-    public string author;
-    public string description;
-    public byte[] bytes;
+    public int ImgId;
+    public string ImgTitle;
+    public int ImgAuthorId;
+    public string ImgAuthor;
+    public string ImgDescription;
+    public byte[] ImgBlob;
 
-    public ImageModel(int id, string title, string author, string description, byte[] bytes)
+    public ImageModel(int imgId, string imgTitle, int imgAuthorId, string imgAuthor, string imgDescription, byte[] imgBlob)
     {
-        this.id = id;
-        this.title = title;
-        this.author = author;
-        this.description = description;
-        this.bytes = bytes;
+        this.ImgId = imgId;
+        this.ImgTitle = imgTitle;
+        this.ImgAuthorId = imgAuthorId;
+        this.ImgAuthor = imgAuthor;
+        this.ImgDescription = imgDescription;
+        this.ImgBlob = imgBlob;
     }
 
     public string GetBase64()
     {
-        return Convert.ToBase64String(this.bytes);
+        return Convert.ToBase64String(this.ImgBlob);
     }
 }
