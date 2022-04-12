@@ -17,10 +17,10 @@
         @foreach (var img in Model)
         {
             <figure>
+                <figcaption>"@img.ImgTitle" by @img.ImgAuthor</figcaption>
                 <picture>
                     <img src="data:image/png;base64, @img.GetBase64()" alt="@img.ImgTitle">
                 </picture>
-                <figcaption>@img.ImgTitle</figcaption>
             </figure>
         }
     </div>
