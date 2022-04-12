@@ -20,17 +20,19 @@
         </figure>
     </div>
     <aside id="picture-description">
-        <form method="post">
+        <!-- er staat "In order to support file uploads, HTML forms must specify an encoding type (enctype) of multipart/form-data."
+        van https://docs.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-6.0 -->
+        <form action="Home/SubmitImage" method="post" enctype="multipart/form-data">
             <fieldset>
                 <legend>Upload</legend>
                 <label for="img-file">Image File</label>
-                <input id="img-file" name="img-file" type="file">
+                <input id="img-file" name="imgFile" type="file">
                 <br>
                 <label for="img-title">Image Title</label>
-                <input id="img-title" name="img-title" type="text">
+                <input id="img-title" name="imgTitle" type="text">
                 <br>
                 <label for="img-description">Description</label>
-                <textarea id="img-description" name="img-description" rows="5"></textarea>
+                <textarea id="img-description" name="imgDescription" rows="5"></textarea>
                 <br>
                 <input value="Submit" type="submit">
             </fieldset>
