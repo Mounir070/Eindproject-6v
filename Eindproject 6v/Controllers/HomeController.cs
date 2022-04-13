@@ -56,16 +56,37 @@ public class HomeController : Controller
 
     private static int UploadImage(string imgTitle, int imgAuthorId, string imgDescription, byte[] imgBlob)
     {
-        const string query = "insert into img_info (IMG_TITLE, IMG_AUTHOR_ID, IMG_DESCRIPTION, IMG_SIZE, IMG_BLOB) values (@TITLE, @AUTHOR_ID, @DESCRIPTION, @SIZE, @BLOB)";
-        using MySqlConnection conn = new MySqlConnection(ConnectionString);
-        conn.Open();
-        MySqlCommand cmd = new MySqlCommand(query, conn);
-        cmd.Parameters.Add("@TITLE", MySqlDbType.VarChar).Value = imgTitle;
-        cmd.Parameters.Add("@AUTHOR_ID", MySqlDbType.Int32).Value = imgAuthorId;
-        cmd.Parameters.Add("@DESCRIPTION", MySqlDbType.VarChar).Value = imgDescription;
-        cmd.Parameters.Add("@SIZE", MySqlDbType.UInt32).Value = imgBlob.Length;
-        cmd.Parameters.Add("@BLOB", MySqlDbType.MediumBlob).Value = imgBlob;
-        return cmd.ExecuteNonQuery();
+        try
+        {
+            const string query = "insert into img_info (IMG_TITLE, IMG_AUTHOR_ID, IMG_DESCRIPTION, IMG_SIZE, IMG_BLOB) values (@TITLE, @AUTHOR_ID, @DESCRIPTION, @SIZE, @BLOB)";
+            using MySqlConnection conn = new MySqlConnection(ConnectionString);
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            cmd.Parameters.Add("@TITLE", MySqlDbType.VarChar).Value = imgTitle;
+            cmd.Parameters.Add("@AUTHOR_ID", MySqlDbType.Int32).Value = imgAuthorId;
+            cmd.Parameters.Add("@DESCRIPTION", MySqlDbType.VarChar).Value = imgDescription;
+            cmd.Parameters.Add("@SIZE", MySqlDbType.UInt32).Value = imgBlob.Length;
+            cmd.Parameters.Add("@BLOB", MySqlDbType.MediumBlob).Value = imgBlob;
+            return cmd.ExecuteNonQuery();
+        }
+        catch (MySqlException e)
+        {
+            // weer een switch voor de error codes
+            uint code = e.Code;
+            switch (code)
+            {
+                case 1406:
+                    Console.WriteLine("Data too long");
+                    // de titel of beschrijving is te lang
+                    break;
+                default:
+                    Console.WriteLine("error code = " + e.Code + ", error number = " + e.Number);
+                    Console.WriteLine(e.Message);
+                    break;
+            }
+        }
+
+        return -1;
     }
 
     public HomeController(ILogger<HomeController> logger)
