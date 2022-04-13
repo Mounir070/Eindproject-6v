@@ -26,20 +26,28 @@ public class HomeController : Controller
         {
             while (reader.Read())
             {
-                var imgId = reader.GetInt32("IMG_ID");
+                try
+                {
+                    var imgId = reader.GetInt32("IMG_ID");
 
-                var imgTitle = reader.GetString("IMG_TITLE");
+                    var imgTitle = reader.GetString("IMG_TITLE");
 
-                var imgAuthorId = reader.GetInt32("USER_ID");
+                    var imgAuthorId = reader.GetInt32("USER_ID");
 
-                var imgAuthor = reader.GetString("USER_NAME");
+                    var imgAuthor = reader.GetString("USER_NAME");
 
-                var imgDescription = reader.GetString("IMG_DESCRIPTION");
+                    var imgDescription = reader.GetString("IMG_DESCRIPTION");
 
-                var imgSize = reader.GetUInt32("IMG_SIZE");
-                var imgBlob = new byte[imgSize];
-                reader.GetBytes(reader.GetOrdinal("IMG_BLOB"), 0, imgBlob, 0, (int) imgSize);
-                images.Add(new ImageModel(imgId, imgTitle, imgAuthorId, imgAuthor, imgDescription, imgBlob));
+                    var imgSize = reader.GetUInt32("IMG_SIZE");
+                    var imgBlob = new byte[imgSize];
+                    reader.GetBytes(reader.GetOrdinal("IMG_BLOB"), 0, imgBlob, 0, (int) imgSize);
+                    images.Add(new ImageModel(imgId, imgTitle, imgAuthorId, imgAuthor, imgDescription, imgBlob));
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Couldn't read this row, see error below");
+                    Console.WriteLine(e.Message);
+                }
             }
         }
         connection.Close();
@@ -95,10 +103,11 @@ public class HomeController : Controller
                     int upload = UploadImage(imgTitle, id.Value, imgDescription, blob);
                 }
             }
-            catch (MySqlException e)
+            catch (Exception e)
             {
                 // dit wordt gerund als er iets fout gaat
                 // we moeten hier eigenlijk checken wat fout gaat
+                Console.WriteLine(e.Message);
                 return RedirectToAction("Index", "Home");
             }
         }

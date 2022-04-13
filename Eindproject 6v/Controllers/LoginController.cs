@@ -41,12 +41,34 @@ public class LoginController : Controller
         
         using (MySqlConnection conn = new MySqlConnection(HomeController.ConnectionString))
         {
-            conn.Open();
-            MySqlCommand cmd = new MySqlCommand(query, conn);
-            cmd.Parameters.Add("@USER", MySqlDbType.VarChar).Value = user;
-            cmd.Parameters.Add("@PASSWORD", MySqlDbType.VarChar).Value = HashPassword(password);
-            return cmd.ExecuteNonQuery();
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.Add("@USER", MySqlDbType.VarChar).Value = user;
+                cmd.Parameters.Add("@PASSWORD", MySqlDbType.VarChar).Value = HashPassword(password);
+                return cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException e)
+            {
+                // gebruik switch voor https://dev.mysql.com/doc/mysql-errors/5.7/en/server-error-reference.html
+                uint code = e.Code;
+                switch (code)
+                {
+                    case 1062:
+                    case 1586:    
+                        Console.WriteLine("Duplicate key");
+                        // de username bestaat al
+                        break;
+                    default:
+                        Console.WriteLine("error code = " + e.Code + ", error number = " + e.Number);
+                        Console.WriteLine(e.Message);
+                        break;
+                }
+            }
         }
+
+        return -1;
     }
     
     private static bool LoginAccount(string user, string password)
