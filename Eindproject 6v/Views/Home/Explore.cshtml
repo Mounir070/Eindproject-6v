@@ -14,15 +14,16 @@
 
 <div id="explore-container">
     <div id="picture-container">
+        <p>Showing @Model.Count images</p>
         @foreach (var img in Model)
         {
+            <hr>
             <figure>
                 <figcaption>"@img.ImgTitle" by @img.ImgAuthor</figcaption>
                 <picture>
                     <img src="data:image/png;base64, @img.GetBase64()" alt="@img.ImgTitle" title="@img.ImgDescription">
                 </picture>
             </figure>
-            <hr>
         }
     </div>
     <aside id="search-bar">
