@@ -56,7 +56,7 @@ public class HomeController : Controller
         cmd.Parameters.Add("@AUTHOR_ID", MySqlDbType.Int32).Value = imgAuthorId;
         cmd.Parameters.Add("@DESCRIPTION", MySqlDbType.VarChar).Value = imgDescription;
         cmd.Parameters.Add("@SIZE", MySqlDbType.UInt32).Value = imgBlob.Length;
-        cmd.Parameters.Add("@BLOB", MySqlDbType.Blob).Value = imgBlob;
+        cmd.Parameters.Add("@BLOB", MySqlDbType.MediumBlob).Value = imgBlob;
         return cmd.ExecuteNonQuery();
     }
 
