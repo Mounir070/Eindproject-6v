@@ -5,6 +5,7 @@ using Eindproject_6v.Models;
 using MySql.Data.MySqlClient;
 
 using System.Web;
+using Microsoft.AspNetCore.Http.Extensions;
 
 namespace Eindproject_6v.Controllers;
 
@@ -16,12 +17,42 @@ public class HomeController : Controller
 
     private static List<ImageModel> GetRecentImages()
     {
+        return GetRecentImagesWithFilter(null, null);
+    }
+
+    private static List<ImageModel> GetRecentImagesWithFilter(string? titleFilter, string? authorFilter)
+    {
         // Voeg USER_NAME toe met een "join" en sorteer van nieuw naar oud
-        const string query = "select IMG_ID, IMG_TITLE, USER_ID, USER_NAME, IMG_DESCRIPTION, IMG_SIZE, IMG_BLOB from img_info join user_info on img_info.IMG_AUTHOR_ID = user_info.USER_ID order by img_info.IMG_ID desc";
+        // en voeg filters toe met parameters in de query
+        string query;
+        if (titleFilter is null && authorFilter is null)
+        {
+            query = "select IMG_ID, IMG_TITLE, USER_ID, USER_NAME, IMG_DESCRIPTION, IMG_SIZE, IMG_BLOB from img_info join user_info on img_info.IMG_AUTHOR_ID = user_info.USER_ID order by img_info.IMG_ID desc";
+        }
+        else if (titleFilter is null)
+        {
+            query = "select IMG_ID, IMG_TITLE, USER_ID, USER_NAME, IMG_DESCRIPTION, IMG_SIZE, IMG_BLOB from img_info join user_info on img_info.IMG_AUTHOR_ID = user_info.USER_ID where user_info.USER_NAME = @NAME order by img_info.IMG_ID desc";
+        }
+        else if (authorFilter is null)
+        {
+            query = "select IMG_ID, IMG_TITLE, USER_ID, USER_NAME, IMG_DESCRIPTION, IMG_SIZE, IMG_BLOB from img_info join user_info on img_info.IMG_AUTHOR_ID = user_info.USER_ID where img_info.IMG_TITLE = @TITLE order by img_info.IMG_ID desc";
+        }
+        else
+        {
+            query = "select IMG_ID, IMG_TITLE, USER_ID, USER_NAME, IMG_DESCRIPTION, IMG_SIZE, IMG_BLOB from img_info join user_info on img_info.IMG_AUTHOR_ID = user_info.USER_ID where img_info.IMG_TITLE = @TITLE and user_info.USER_NAME = @NAME order by img_info.IMG_ID desc";
+        }
         var images = new List<ImageModel>();
         using var connection = new MySqlConnection(ConnectionString);
         connection.Open();
         var cmd = new MySqlCommand(query, connection);
+        if (titleFilter is not null)
+        {
+            cmd.Parameters.Add("@TITLE", MySqlDbType.VarChar).Value = titleFilter;
+        }
+        if (authorFilter is not null)
+        {
+            cmd.Parameters.Add("@NAME", MySqlDbType.VarChar).Value = authorFilter;
+        }
         using (var reader = cmd.ExecuteReader())
         {
             while (reader.Read())
@@ -139,6 +170,14 @@ public class HomeController : Controller
     public IActionResult Explore()
     {
         var images = GetRecentImages();
+        return View(images);
+    }
+
+    [HttpPost]
+    [Route("Explore")]
+    public IActionResult Explore(string? imgTitle, string? authName)
+    {
+        var images = GetRecentImagesWithFilter(imgTitle, authName);
         return View(images);
     }
 
