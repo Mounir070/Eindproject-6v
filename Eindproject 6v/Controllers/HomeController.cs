@@ -35,11 +35,13 @@ public class HomeController : Controller
         }
         else if (authorFilter is null)
         {
-            query = "select IMG_ID, IMG_TITLE, USER_ID, USER_NAME, IMG_DESCRIPTION, IMG_SIZE, IMG_BLOB from img_info join user_info on img_info.IMG_AUTHOR_ID = user_info.USER_ID where img_info.IMG_TITLE = @TITLE order by img_info.IMG_ID desc";
+            // https://stackoverflow.com/questions/2602252/mysql-query-string-contains
+            query = "select IMG_ID, IMG_TITLE, USER_ID, USER_NAME, IMG_DESCRIPTION, IMG_SIZE, IMG_BLOB from img_info join user_info on img_info.IMG_AUTHOR_ID = user_info.USER_ID where instr (img_info.IMG_TITLE, @TITLE) > 0 order by img_info.IMG_ID desc";
         }
         else
         {
-            query = "select IMG_ID, IMG_TITLE, USER_ID, USER_NAME, IMG_DESCRIPTION, IMG_SIZE, IMG_BLOB from img_info join user_info on img_info.IMG_AUTHOR_ID = user_info.USER_ID where img_info.IMG_TITLE = @TITLE and user_info.USER_NAME = @NAME order by img_info.IMG_ID desc";
+            // https://stackoverflow.com/questions/2602252/mysql-query-string-contains
+            query = "select IMG_ID, IMG_TITLE, USER_ID, USER_NAME, IMG_DESCRIPTION, IMG_SIZE, IMG_BLOB from img_info join user_info on img_info.IMG_AUTHOR_ID = user_info.USER_ID where instr (img_info.IMG_TITLE, @TITLE) > 0 and user_info.USER_NAME = @NAME order by img_info.IMG_ID desc";
         }
         var images = new List<ImageModel>();
         using var connection = new MySqlConnection(ConnectionString);
