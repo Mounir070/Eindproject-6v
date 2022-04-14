@@ -1,5 +1,8 @@
 ﻿@using Eindproject_6v.Controllers
-@{ var username = Context.Session.GetString(LoginController.SessionKeyName); } 
+
+@{
+    var username = Context.Session.GetString(LoginController.SessionKeyName);
+} 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +21,8 @@
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/Explore">Explore</a></li>
-                <li>@if (username != null)
+                <li>
+                    @if (username != null)
                     {
                         @($"Hello {username}!")
                     }
@@ -34,7 +38,7 @@
         @RenderBody()
     </main>
     <footer>
-        <span>Made by Thijs, Mounir, Damian and Tim</span>
+        <span><a href="/AboutUs">Made by Thijs, Mounir, Damian and Tim</a></span>
     </footer>
 </div>
 </body>

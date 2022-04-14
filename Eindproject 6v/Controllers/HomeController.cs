@@ -181,6 +181,12 @@ public class HomeController : Controller
         return View(images);
     }
 
+    [Route("AboutUs")]
+    public IActionResult AboutUs()
+    {
+        return View();
+    }
+
     [Route("NotFound")]
     public IActionResult NotFound()
     {
