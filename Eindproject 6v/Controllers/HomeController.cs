@@ -89,7 +89,8 @@ public class HomeController : Controller
     {
         try
         {
-            const string query = "insert into img_info (IMG_TITLE, IMG_AUTHOR_ID, IMG_DESCRIPTION, IMG_SIZE, IMG_BLOB) values (@TITLE, @AUTHOR_ID, @DESCRIPTION, @SIZE, @BLOB)";
+            // https://stackoverflow.com/questions/13867593/insert-default-into-not-null-column-if-value-is-null
+            const string query = "insert into img_info (IMG_TITLE, IMG_AUTHOR_ID, IMG_DESCRIPTION, IMG_SIZE, IMG_BLOB) values (ifnull (@TITLE, default(IMG_TITLE)), @AUTHOR_ID, ifnull (@DESCRIPTION, default(IMG_DESCRIPTION)), @SIZE, @BLOB)";
             using MySqlConnection conn = new MySqlConnection(ConnectionString);
             conn.Open();
             MySqlCommand cmd = new MySqlCommand(query, conn);

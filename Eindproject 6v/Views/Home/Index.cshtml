@@ -26,13 +26,13 @@
             <fieldset>
                 <legend>Upload</legend>
                 <label for="img-file">Image File</label>
-                <input id="img-file" name="imgFile" type="file">
+                <input id="img-file" name="imgFile" type="file" required>
                 <br>
                 <label for="img-title">Image Title</label>
-                <input id="img-title" name="imgTitle" type="text">
+                <input id="img-title" name="imgTitle" type="text" maxlength="25">
                 <br>
                 <label for="img-description">Description</label>
-                <textarea id="img-description" name="imgDescription" rows="5"></textarea>
+                <textarea id="img-description" name="imgDescription" rows="5" cols="20" maxlength="250"></textarea>
                 <br>
                 <input value="Submit" type="submit">
             </fieldset>
