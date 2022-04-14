@@ -150,7 +150,7 @@ public class HomeController : Controller
                 // https://stackoverflow.com/questions/36432028/how-to-convert-a-file-into-byte-array-in-memory
                 using (var memoryStream = new MemoryStream())
                 {
-                    imgFile.CopyToAsync(memoryStream);
+                    imgFile.CopyTo(memoryStream);
                     byte[] blob = memoryStream.ToArray();
                     int upload = UploadImage(imgTitle, id.Value, imgDescription, blob);
                 }
