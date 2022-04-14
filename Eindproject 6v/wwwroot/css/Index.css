@@ -2,7 +2,40 @@
     background-color: white;
 }
 
-#picture-container {
+#welcome-container {
+    display: flex;
+    align-items: stretch;
+    column-gap: 20px;
+}
+
+#welcome-container > div {
+    border-radius: 20px;
+    box-shadow: 3px 3px 5px 6px #cccccc;
+    margin: 20px;
+    padding: 10px;
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+#welcome {
+    background-image: url("https://picsum.photos/1500/2100?grayscale");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    
+    flex: 1;
+    
+    color: red;
+}
+
+#intro {
+    background-color: #093145;
+
+    flex: 1;
+    
+    font-size: 25px;
+    color: white;
 }
 
 #picture-description > form {
@@ -12,4 +45,9 @@
 #picture-description > form > fieldset {
     height: 100%;
     box-sizing: border-box;
+}
+
+#picture-description > form > fieldset textarea {
+    vertical-align: top;
+    resize: none;
 }

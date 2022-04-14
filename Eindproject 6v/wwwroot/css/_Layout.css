@@ -100,3 +100,24 @@ nav > ul > :last-child {
   background-color: #f0da99;
   border-top-right-radius: 25px;
 }
+
+a:link, a:visited {
+  color: green;
+}
+
+a:hover {
+  color: hotpink;
+}
+
+a:active {
+  color: blue;
+}
+
+/* Maak de scrollbar onzichtbaar */
+::-webkit-scrollbar {
+  display: none;
+}
+
+fieldset {
+  border-radius:8px;
+}

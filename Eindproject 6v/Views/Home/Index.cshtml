@@ -11,20 +11,23 @@
 }
 
 <div id="index-container">
-    <div id="picture-container">
-        <figure>
-            <picture>
-                <img src="https://picsum.photos/1200/400" alt="">
-            </picture>
-            <figcaption></figcaption>
-        </figure>
+    <div id="welcome-container">
+        <div id="welcome">
+            <h1>Welcome to our website!</h1>
+        </div>
+        <div id="intro">
+            <p>This is the place to share your photos with others, or to find the perfect picture you need for your presentation.</p>
+            <p>Pick some filters and we will provide a wide range of non-copyright photos.</p>
+            <p>If you would like to know us, visit our <a href="/AboutUs">About Us</a> page to find out who we are.</p>
+            <p>If you have any questions, please let us know, we are always happy to help!</p>
+        </div>
     </div>
     <aside id="picture-description">
         <!-- er staat "In order to support file uploads, HTML forms must specify an encoding type (enctype) of multipart/form-data."
         van https://docs.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-6.0 -->
         <form action="Home/SubmitImage" method="post" enctype="multipart/form-data">
             <fieldset>
-                <legend>Upload</legend>
+                <legend>Upload Your Image</legend>
                 <label for="img-file">Image File</label>
                 <input id="img-file" name="imgFile" type="file" required>
                 <br>
@@ -34,6 +37,7 @@
                 <label for="img-description">Description</label>
                 <textarea id="img-description" name="imgDescription" rows="5" cols="20" maxlength="250"></textarea>
                 <br>
+                <hr>
                 <input value="Submit" type="submit">
             </fieldset>
         </form>

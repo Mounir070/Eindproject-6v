@@ -1,11 +1,21 @@
 ﻿#login-container {
     background-color: white;
     width: 100%;
+    column-gap: 20px;
 }
 
 /* De `!important` override de CSS van de _Layout CSS, anders werkt dit niet */
 #login-container > div {
+    background-color: #093145;
+
     flex: 1 !important;
+
+    border-radius: 20px;
+    box-shadow: 3px 3px 5px 6px #cccccc;
+    margin: 20px;
+    padding: 10px;
+
+    color: white;
 }
 
 #login, #signup {
