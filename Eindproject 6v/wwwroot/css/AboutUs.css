@@ -1,6 +1,8 @@
 ﻿/* De `!important` override de CSS van de _Layout CSS, anders werkt dit niet */
 #about-us-container {
     display: block !important;
+    
+    color: white;
 }
 
 @media only screen and (min-width: 600px) {

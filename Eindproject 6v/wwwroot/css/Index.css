@@ -19,6 +19,7 @@
 }
 
 #welcome {
+    background-color: #093145;
     background-image: url("https://picsum.photos/1500/2100?grayscale");
     background-size: cover;
     background-repeat: no-repeat;

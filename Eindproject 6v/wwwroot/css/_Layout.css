@@ -11,7 +11,7 @@ html, body {
 }
 
 body {
-  background-color: #caf4f4;
+  background-color: #152238;
 }
 
 #container {
@@ -21,7 +21,6 @@ body {
 }
 
 #container header {
-  margin-bottom: 30px;
 }
 
 nav > ul {
@@ -37,13 +36,14 @@ nav > ul {
 }
 
 nav > ul > li {
-  background-color: #f0da99;
+  background-color: white;
   padding: 1em;
   flex-grow: 0.1;
 }
 
-nav > ul > :nth-child(2) {
-  border-bottom-right-radius: 25px
+nav > ul > li {
+  margin: 5px;
+  border-radius: 25px
 }
 
 nav > ul > :last-child {
@@ -91,14 +91,14 @@ nav > ul > :last-child {
 }
 
 #container footer {
-  margin-top: 30px;
 }
 
 #container footer > span {
   float: left;
+  margin: 5px;
   padding: 1em;
-  background-color: #f0da99;
-  border-top-right-radius: 25px;
+  background-color: white;
+  border-radius: 25px;
 }
 
 a:link, a:visited {
@@ -119,5 +119,5 @@ a:active {
 }
 
 fieldset {
-  border-radius:8px;
+  border-radius: 8px;
 }
