@@ -102,14 +102,10 @@ nav > ul > :last-child {
 }
 
 a:link, a:visited {
-  color: green;
+  color: black;
 }
 
-a:hover {
-  color: hotpink;
-}
-
-a:active {
+a:hover, a:active {
   color: blue;
 }
 

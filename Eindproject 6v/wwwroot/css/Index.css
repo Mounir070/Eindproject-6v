@@ -18,25 +18,51 @@
     overflow-y: scroll;
 }
 
-#welcome {
+#preview {
     background-color: #093145;
     background-image: url("https://picsum.photos/1500/2100?grayscale");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    
+
     flex: 1;
-    
-    color: red;
 }
 
-#intro {
+#welcome {
     background-color: #093145;
 
     flex: 1;
     
     font-size: 25px;
     color: white;
+}
+
+#welcome h1 {
+    font-size: 1.5em;
+}
+
+@media only screen and (min-width: 600px) and (max-width: 800px) {
+    #welcome {
+        order: 0;
+    }
+
+    #preview {
+        order: 1;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #welcome-container {
+        flex-direction: column;
+    }
+}
+
+#welcome a:link, #welcome a:visited {
+    color: white;
+}
+
+#welcome a:hover, #welcome a:active {
+    color: blue;
 }
 
 #picture-description > form {
@@ -51,4 +77,31 @@
 #picture-description > form > fieldset textarea {
     vertical-align: top;
     resize: none;
+}
+
+#picture-description > form fieldset > div {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+#picture-description > form fieldset > div > div {
+    background-color: #152238;
+    padding: 10px;
+    border-radius: 20px;
+    color: white;
+}
+
+#picture-description > form fieldset > input {
+    background-color: #152238;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+
+    border: none;
+}
+
+#picture-description > form fieldset > input:hover {
+    color: blue;
+    cursor: pointer;
 }
